@@ -30,7 +30,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         if manager.authorizationStatus != .authorizedAlways || manager.authorizationStatus != .authorizedWhenInUse {
             let alertDenied = UIAlertController(title: "Localization Permission", message: "We need that you allow localization service to app works fine", preferredStyle: .alert)
             
-            let configurationAction = UIAlertAction(title: "Open configuration", style: .default, handler: nil)
+            let configurationAction = UIAlertAction(title: "Open configuration", style: .default, handler: {(UIAlertAction) -> Void in
+                
+                if let configuration = NSURL(string: UIApplication.openSettingsURLString){
+                    UIApplication.shared.open(configuration as URL)
+                }
+                
+            })
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             
             alertDenied.addAction(configurationAction)

@@ -25,6 +25,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        if manager.authorizationStatus != .authorizedAlways || manager.authorizationStatus != .authorizedWhenInUse {
+            let alertDenied = UIAlertController(title: "Localization Permission", message: "We need that you allow localization service to app works fine", preferredStyle: .alert)
+            
+            let configurationAction = UIAlertAction(title: "Open configuration", style: .default, handler: nil)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            alertDenied.addAction(configurationAction)
+            alertDenied.addAction(cancelAction)
+            
+            present(alertDenied, animated: true, completion: nil)
+        }
+    }
 
 
 }

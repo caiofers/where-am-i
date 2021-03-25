@@ -6,12 +6,19 @@
 //
 
 import UIKit
+import MapKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+    @IBOutlet weak var latitudeValue: UILabel!
+    @IBOutlet weak var longitudeValue: UILabel!
+    @IBOutlet weak var adressValue: UILabel!
+    @IBOutlet weak var speedValue: UILabel!
+    @IBOutlet weak var speedView: UIView!
+    @IBOutlet weak var mapView: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        speedView.layer.cornerRadius = speedView.frame.height/2
     }
 
 

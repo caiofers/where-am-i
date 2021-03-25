@@ -13,12 +13,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var longitudeValue: UILabel!
     @IBOutlet weak var adressValue: UILabel!
     @IBOutlet weak var speedValue: UILabel!
-    @IBOutlet weak var speedView: UIView!
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        speedView.layer.cornerRadius = speedView.frame.height/2
     }
 
 

@@ -49,6 +49,17 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         present(alertDenied, animated: true, completion: nil)
     }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        var userLocalization = locations.last
+        let longitude = userLocalization?.coordinate.longitude
+        let latitude = userLocalization?.coordinate.latitude
+        
+        longitudeValue.text = String(longitude!)
+        latitudeValue.text = String(latitude!)
+        speedValue.text = String(userLocalization!.speed)
+        
+    }
 
 }
 

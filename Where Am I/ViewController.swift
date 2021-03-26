@@ -51,13 +51,24 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        var userLocalization = locations.last
+        let userLocalization = locations.last
         let longitude = userLocalization?.coordinate.longitude
         let latitude = userLocalization?.coordinate.latitude
         
         longitudeValue.text = String(longitude!)
         latitudeValue.text = String(latitude!)
         speedValue.text = String(userLocalization!.speed)
+        
+        let deltaLatitude: CLLocationDegrees = 0.01
+        let deltaLongitude: CLLocationDegrees = 0.01
+        
+        let location = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+        
+        let visualizationArea: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: deltaLatitude, longitudeDelta: deltaLongitude)
+        
+        let region: MKCoordinateRegion = MKCoordinateRegion(center: location, span: visualizationArea)
+        
+        mapView.setRegion(region, animated: true)
         
     }
 
